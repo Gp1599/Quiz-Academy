@@ -1,1 +1,1 @@
-# QuizAcademy
+# Trivia-Academy
