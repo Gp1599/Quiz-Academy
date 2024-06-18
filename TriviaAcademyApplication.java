@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class QuizAcademyApplication {
+public class TriviaAcademyApplication {
 	
 	private static final int MAXIMUM_LOGIN_ATTEMPTS = 3;
 
