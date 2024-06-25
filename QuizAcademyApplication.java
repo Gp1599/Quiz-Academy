@@ -3,7 +3,7 @@ import java.util.*;
 /**
  *  Represents that main application for the Trivia Academy progam.
  */
-public class TriviaAcademyApplication {
+public class QuizAcademyApplication {
 
 	/**
 	 * 	Represents the maximum number of ligin attempts for the player
