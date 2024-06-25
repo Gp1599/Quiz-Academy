@@ -107,7 +107,7 @@ public class TriviaAcademyApplication {
 	private static void runAcademy(final Scanner input, String studentName, int studentID){
 		playerStudent = new Student(studentID, studentName);
 
-		System.out.println("Welcome to Quiz Academy, " + playerStudent.getName() + "!");
+		System.out.println("Welcome to Trivia Academy, " + playerStudent.getName() + "!");
 		System.out.println("Main Menu: ");
 		System.out.println("0 - Training");
 		System.out.println("1 - Tests");

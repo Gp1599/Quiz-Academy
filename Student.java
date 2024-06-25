@@ -1,4 +1,3 @@
-
 /**
  *  This represents a student account for Quiz Academy
  */
