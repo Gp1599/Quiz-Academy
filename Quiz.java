@@ -33,7 +33,15 @@ public abstract class Quiz {
     /**
      * 
      */
-    public Quiz(String name, QuizQuestionDifficulty difficulty){
+    private float currentTime;
+
+    /**
+     * 
+     */
+    public Quiz(String name, QuizQuestionDifficulty difficulty, float currentTime){
+        if(name == null) throw new IllegalArgumentException("The name of the quiz can't be null!");
+        if(currentTime >= 0) throw new IllegalArgumentException("The time can't be negative");
+
         this.name = name;
         this.questions = new HashMap<>();
         for(QuizQuestionDifficulty diff : QuizQuestionDifficulty.values()){
@@ -45,6 +53,8 @@ public abstract class Quiz {
 
         this.earnedPoints = 0;
         this.maximumPoints = 0;
+
+        this.currentTime = currentTime;
     }
 
     /**
@@ -142,5 +152,28 @@ public abstract class Quiz {
             }
         }
         return false;
+    }
+
+    /**
+     *  Runs the quiz for the player student or user to take.
+     * @param input the scanner to read answers from the player user.
+     */
+    public void run(Scanner input){
+        QuizQuestion currentQuestion = this.pick();
+
+        while(true){
+            System.out.println(currentQuestion);
+            System.out.print("Enter answer: ");
+            String answer = input.nextLine();
+            if(this.currentTime < 0) {
+                System.out.println("Time is up! (You have been automatically exited from the quiz)");
+                break;
+            }
+            this.maximumPoints += currentQuestion.getDifficulty().getReward();
+            if(currentQuestion.checkAnswer(answer)){
+                this.earnedPoints += currentQuestion.getDifficulty().getReward();
+            }
+            currentQuestion = this.pick();
+        }
     }
 }
