@@ -72,7 +72,7 @@ public class QuizAcademyApplication {
 		if(firstTime){
 			System.out.print("Please enter your name: ");
 			studentName = input.nextLine();
-			studentID = 10000 + randomIDGenerator.nextInt(89999); // FIXME: Generate the student's ID
+			studentID = 10000 + randomIDGenerator.nextInt(89999); 
 			
 			System.out.println("Your student ID number is: " + studentID);
 		} else {
@@ -106,19 +106,88 @@ public class QuizAcademyApplication {
 	 */
 	private static void runAcademy(final Scanner input, String studentName, int studentID){
 		playerStudent = new Student(studentID, studentName);
+		System.out.println("Welcome to Quiz Academy, " + playerStudent.getName() + "!");
 
-		System.out.println("Welcome to Trivia Academy, " + playerStudent.getName() + "!");
-		System.out.println("Main Menu: ");
-		System.out.println("0 - Training");
-		System.out.println("1 - Tests");
-		System.out.println("2 - My Report");
-		System.out.println("q - Quit");
+		boolean running = true;
+		while(running){
+			//Print Main Menu
+			System.out.println("Main Menu: ");
+			System.out.println("0 - Training");
+			System.out.println("1 - Tests");
+			System.out.println("2 - My Report");
+			System.out.println("q - Quit");
+			System.out.println();
+			System.out.print("Enter valid option: ");
 
-		System.out.print("Enter valid option: ");
-
-		String option = input.next(); 
-		if(option.equals("q")){
-			System.out.println("Thank you for entering Trivia Academy! Bye!");
+			String option = input.next(); 
+			switch(option){
+				case "0":
+					runQuizMenu(input, true);
+					break;
+				case "1":
+					runQuizMenu(input, false);
+					break;
+				case "2":
+					printStudentReport();
+					break;
+				case "q":
+					System.out.println("Thank you for entering Trivia Academy! Bye!");
+					running = false;
+					break;
+			}
 		}
+	}
+
+	/**
+	 * 
+	 * @param input
+	 * @param training
+	 */
+	private static void runQuizMenu(final Scanner input, boolean trainingMode){
+		boolean running = true;
+		while(running){
+			System.out.println("Which quiz would you like to take:");
+			System.out.println("0 - Math");
+			System.out.println("1 - Memory");
+			System.out.println("2 - Maze");
+			System.out.println("q - back");
+			System.out.println();
+			System.out.println("Enter the option:  ");
+			String option = input.next();
+			switch(option){
+				case "0":
+					startQuiz(input, null, trainingMode); //FIXME: Change first parameter 
+					break;
+				case "1":
+					startQuiz(input, null, trainingMode); //FIXME: Change second parameter
+					break;
+				case "2":
+					printStudentReport();
+					break;
+				case "q":
+					running = false;
+					break;
+				default:
+					System.out.println("Error: Invalid Option!");
+					break;
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param input 
+	 * @param quiz
+	 * @param trainingMode
+	 */
+	private static void startQuiz(final Scanner input, Quiz quiz, boolean traningMode){
+		//FIXME: Implement the method to start the quiz
+	}
+
+	/**
+	 * 
+	 */
+	private static void printStudentReport(){
+		//FIXME: Implement the method to print the player student's report
 	}
 }
