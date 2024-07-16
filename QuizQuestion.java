@@ -5,19 +5,19 @@ public abstract class QuizQuestion {
     /**
      * 
      */
-    private QuizQuestionDifficulty difficulty;
+    private Difficulty difficulty;
 
     /**
      * 
      */
-    public QuizQuestion(QuizQuestionDifficulty difficulty){
+    public QuizQuestion(Difficulty difficulty){
         this.difficulty = difficulty;
     }
 
     /**
      * 
      */
-    public QuizQuestionDifficulty getDifficulty(){
+    public Difficulty getDifficulty(){
         return this.difficulty;
     }
     

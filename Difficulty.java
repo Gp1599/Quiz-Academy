@@ -1,7 +1,7 @@
 /**
  * 
  */
-public enum QuizQuestionDifficulty {
+public enum Difficulty {
     /**
      * 
      */
@@ -30,7 +30,7 @@ public enum QuizQuestionDifficulty {
     /**
      * 
      */
-    private QuizQuestionDifficulty(int reward){
+    private Difficulty(int reward){
         this.reward = reward;
     }
 
