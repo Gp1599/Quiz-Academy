@@ -27,7 +27,7 @@ public class QuizAcademyApplication {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		//
-		System.out.print("Welcome to Trivia Academy! ");
+		System.out.println("Welcome to Quiz Academy! ");
 		checkFirstTime(input);
 		login(input);
 	}
@@ -106,8 +106,10 @@ public class QuizAcademyApplication {
 	 */
 	private static void runAcademy(final Scanner input, String studentName, int studentID){
 		playerStudent = new Student(studentID, studentName);
-		System.out.println("Welcome to Quiz Academy, " + playerStudent.getName() + "!");
 
+		System.out.println();
+		System.out.println("Welcome to Quiz Academy, " + playerStudent.getName() + "!");
+		
 		boolean running = true;
 		while(running){
 			//Print Main Menu
@@ -116,22 +118,24 @@ public class QuizAcademyApplication {
 			System.out.println("1 - Tests");
 			System.out.println("2 - My Report");
 			System.out.println("q - Quit");
-			System.out.println();
 			System.out.print("Enter valid option: ");
 
 			String option = input.next(); 
 			switch(option){
 				case "0":
 					runQuizMenu(input, true);
+					System.out.println();
 					break;
 				case "1":
 					runQuizMenu(input, false);
+					System.out.println();
 					break;
 				case "2":
 					printStudentReport();
+					System.out.println();
 					break;
 				case "q":
-					System.out.println("Thank you for entering Trivia Academy! Bye!");
+					System.out.println("Thank you for entering Quiz Academy! Bye!");
 					running = false;
 					break;
 			}
@@ -144,14 +148,16 @@ public class QuizAcademyApplication {
 	 * @param training
 	 */
 	private static void runQuizMenu(final Scanner input, boolean trainingMode){
+		
+
 		boolean running = true;
 		while(running){
+			System.out.println();
 			System.out.println("Which quiz would you like to take:");
 			System.out.println("0 - Math");
 			System.out.println("1 - Memory");
 			System.out.println("2 - Maze");
 			System.out.println("q - back");
-			System.out.println();
 			System.out.println("Enter the option:  ");
 			String option = input.next();
 			switch(option){
