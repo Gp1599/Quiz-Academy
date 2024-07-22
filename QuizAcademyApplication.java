@@ -162,13 +162,13 @@ public class QuizAcademyApplication {
 			String option = input.next();
 			switch(option){
 				case "0":
-					startQuiz(input, null, trainingMode); //FIXME: Change first parameter 
+					startQuiz(input, new QuizTest(Difficulty.EASY, 10000000000.0), trainingMode); //FIXME: Change first parameter 
 					break;
 				case "1":
-					startQuiz(input, null, trainingMode); //FIXME: Change second parameter
+					startQuiz(input, new QuizTest(Difficulty.NORMAL, 10000000000.0), trainingMode); //FIXME: Change second parameter
 					break;
 				case "2":
-					printStudentReport();
+					startQuiz(input, new QuizTest(Difficulty.HARD, 10000000000.0), trainingMode);
 					break;
 				case "q":
 					running = false;
@@ -186,14 +186,19 @@ public class QuizAcademyApplication {
 	 * @param quiz
 	 * @param trainingMode
 	 */
-	private static void startQuiz(final Scanner input, Quiz quiz, boolean traningMode){
-		//FIXME: Implement the method to start the quiz
+	private static void startQuiz(final Scanner input, Quiz quiz, boolean trainingMode){
+		quiz.progress(input, playerStudent, trainingMode);
 	}
 
 	/**
 	 * 
 	 */
-	private static void printStudentReport(){
-		//FIXME: Implement the method to print the player student's report
+	private static void printStudentReport() {
+		System.out.println("Cumulative Grade: " + playerStudent.getReport().getCumulativeLetterGrade());
+		for(Quiz.Report report : playerStudent.getReport().getQuizReports()){
+			System.out.println(report.getName());
+			System.out.println("\t Score: " + report.getEarnedPoints() + "/" + report.getMaximumPoints() + "pts ");
+			System.out.println("\t Grade: " + report.getLetterGrade());
+		}
 	}
 }

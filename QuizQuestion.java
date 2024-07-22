@@ -17,6 +17,12 @@ public abstract class QuizQuestion {
     /**
      * 
      */
+    @Override
+    public abstract String toString();
+
+    /**
+     * 
+     */
     public Difficulty getDifficulty(){
         return this.difficulty;
     }

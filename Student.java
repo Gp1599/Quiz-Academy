@@ -6,10 +6,16 @@ public class Student {
      * Represents the student's name
      */
     private String name;
+    
     /**
      * Represents the student's ID
      */
     private int ID;
+
+    /**
+     * 
+     */
+    private StudentReport report;
 
     /**
      * Initializes the student with the name and ID
@@ -19,6 +25,7 @@ public class Student {
     public Student(int id, String name){
         this.name = name;
         this.ID = id;
+        this.report = new StudentReport();
     }
 
     /**
@@ -35,5 +42,12 @@ public class Student {
      */
     public int getID(){
         return this.ID;
+    }
+
+    /**
+     * @report
+     */
+    public StudentReport getReport(){
+        return this.report;
     }
 }

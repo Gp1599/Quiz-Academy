@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * 
  */
-public abstract class Quiz {
+public abstract class Quiz implements Runnable {
 
     /**
      * 
@@ -23,14 +23,14 @@ public abstract class Quiz {
     /**
      * 
      */
-    private float currentTime;
+    private double currentTime;
 
     /**
      * 
      */
-    public Quiz(String name, Difficulty difficulty, float currentTime){
+    public Quiz(String name, Difficulty difficulty, double timeLimit){
         if(name == null) throw new IllegalArgumentException("The name of the quiz can't be null!");
-        if(currentTime >= 0) throw new IllegalArgumentException("The time can't be negative");
+        if(timeLimit < 0) throw new IllegalArgumentException("The time can't be negative");
 
         this.name = name;
 
@@ -39,13 +39,8 @@ public abstract class Quiz {
         this.earnedPoints = 0;
         this.maximumPoints = 0;
 
-        this.currentTime = currentTime;
+        this.currentTime = timeLimit;
     }
-
-    /**
-     *  @returns the collection of questions to be added to the quiz.
-     */
-    protected abstract Iterable<QuizQuestion> generateQuestions();
 
     /**
      * 
@@ -123,25 +118,55 @@ public abstract class Quiz {
     }
 
     /**
+     * 
+     */
+    @Override
+    public void run(){
+        double lastTime = System.nanoTime();
+        double markTime = lastTime;
+        while(this.currentTime > 0){
+            double elapsedTime = System.nanoTime() - lastTime;
+            this.currentTime -= elapsedTime;
+            markTime += elapsedTime;
+            lastTime = markTime;
+        }
+    }
+    /**
      *  Runs the quiz for the player student or user to take.
      * @param input the scanner to read answers from the player user.
+     * @param trainingMode
      */
-    public void run(Scanner input){
-        QuizQuestion currentQuestion = this.pick();
+    public void progress(Scanner input, Student player, boolean trainingMode){
+        Thread quizThread = new Thread(this);
+        quizThread.start();
 
         while(!this.isDone()){
+            QuizQuestion currentQuestion = this.pick();
             System.out.println(currentQuestion);
             System.out.print("Enter answer: ");
             String answer = input.nextLine();
-            if(this.currentTime < 0) {
+
+            if(this.currentTime <= 0) {
                 System.out.println("Time's up! (You have been automatically exited from the quiz)");
                 break;
             }
             this.maximumPoints += currentQuestion.getDifficulty().getReward();
             if(currentQuestion.checkAnswer(answer)){
                 this.earnedPoints += currentQuestion.getDifficulty().getReward();
+                if(trainingMode){
+                    System.out.println("Correct!");
+                }
+            } else {
+                if(trainingMode){
+                    System.out.println("Incorrect!");
+                }
             }
-            currentQuestion = this.pick();
+
+            System.out.println();
+        }
+
+        if(!trainingMode){
+            player.getReport().addQuizResults(this);
         }
     }
 }

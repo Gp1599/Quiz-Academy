@@ -29,4 +29,11 @@ public class StudentReport {
     public char getCumulativeLetterGrade(){
         return Util.calculateAverageGradeLetter(this.quizReports);
     }
+
+    /**
+     * @return 
+     */
+    public Iterable<Quiz.Report> getQuizReports(){
+        return this.quizReports;
+    }
 }
