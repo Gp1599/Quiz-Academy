@@ -67,6 +67,11 @@ public abstract class Quiz implements Runnable {
         /**
          * 
          */
+        private int id;
+        
+        /**
+         * 
+         */
         private String name;
         
         /**
@@ -83,6 +88,7 @@ public abstract class Quiz implements Runnable {
          * 
          */
         public Report(Quiz quiz){
+            this.id = 100000; //FIXME: Make it generate a random number between 000000 and 999999
             this.name = quiz.name;
             this.earnedPoints = quiz.earnedPoints;
             this.maximumPoints = quiz.maximumPoints;
