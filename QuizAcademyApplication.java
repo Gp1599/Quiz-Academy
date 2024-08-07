@@ -158,17 +158,17 @@ public class QuizAcademyApplication {
 			System.out.println("1 - Memory");
 			System.out.println("2 - Maze");
 			System.out.println("q - back");
-			System.out.println("Enter the option:  ");
+			System.out.print("Enter the option:  ");
 			String option = input.next();
 			switch(option){
 				case "0":
-					startQuiz(input, new QuizTest(Difficulty.EASY, 10000000000.0), trainingMode); //FIXME: Change first parameter 
+					startQuiz(input, new QuizTest(Difficulty.EASY), trainingMode); //FIXME: Change first parameter 
 					break;
 				case "1":
-					startQuiz(input, new QuizTest(Difficulty.NORMAL, 10000000000.0), trainingMode); //FIXME: Change second parameter
+					startQuiz(input, new QuizTest(Difficulty.NORMAL), trainingMode); //FIXME: Change second parameter
 					break;
 				case "2":
-					startQuiz(input, new QuizTest(Difficulty.HARD, 10000000000.0), trainingMode);
+					startQuiz(input, new QuizTest(Difficulty.HARD), trainingMode);
 					break;
 				case "q":
 					running = false;

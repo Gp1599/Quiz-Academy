@@ -9,8 +9,8 @@ public class QuizTest extends Quiz {
      * @param difficulty
      * @param timeLimit
      */
-    public QuizTest(Difficulty difficulty, double timeLimit){
-        super("Testing Quiz!", difficulty, timeLimit);
+    public QuizTest(Difficulty difficulty){
+        super("Testing Quiz!", difficulty);
     }
 
     /**

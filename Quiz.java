@@ -8,6 +8,11 @@ public abstract class Quiz implements Runnable {
     /**
      * 
      */
+    private static final double DEFAULT_TIME = 60000000000.0;
+
+    /**
+     * 
+     */
     private String name;
 
     /**
@@ -28,9 +33,8 @@ public abstract class Quiz implements Runnable {
     /**
      * 
      */
-    public Quiz(String name, Difficulty difficulty, double timeLimit){
+    public Quiz(String name, Difficulty difficulty){
         if(name == null) throw new IllegalArgumentException("The name of the quiz can't be null!");
-        if(timeLimit < 0) throw new IllegalArgumentException("The time can't be negative");
 
         this.name = name;
 
@@ -39,7 +43,7 @@ public abstract class Quiz implements Runnable {
         this.earnedPoints = 0;
         this.maximumPoints = 0;
 
-        this.currentTime = timeLimit;
+        this.currentTime = Quiz.DEFAULT_TIME;
     }
 
     /**
